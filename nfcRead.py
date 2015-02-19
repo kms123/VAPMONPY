@@ -12,7 +12,7 @@ press = 1.3
 
 os.system('cd "/home/pi/libnfc/libnfc-libnfc-1.7.0/examples"')
 print "Scan NFC module"
-os.system('nfc-poll > /home/pi/RPiCode/nfc.txt') #Currently overwriting file every time. Use >> to append to file.
+os.system('nfc-poll > /home/pi/RPiCode/nfc.txt') #Currently overwriting file every time. This file just used to save UID and then it is extracted and saved in the proper data file.
 
 with open("nfc.txt") as f:
 	content = f.readlines()
