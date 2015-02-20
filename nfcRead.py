@@ -3,12 +3,24 @@ import RPi.GPIO as GPIO
 import datetime
 import csv
 
-GPIO.setmode(GPIO.BOARD)
+from keypad import KeypadRead as KeypadRead
 
 #Dummy data
-doctor = 1234
 flow = 5
 press = 1.3
+
+print "Input doctor code"
+digitOne = KeypadRead()
+print digitOne
+digitTwo = KeypadRead()
+print digitTwo
+digitThree = KeypadRead()
+print digitThree
+digitFour = KeypadRead()
+print digitFour
+
+doctor = digitOne + digitTwo + digitThree + digitFour
+print doctor
 
 os.system('cd "/home/pi/libnfc/libnfc-libnfc-1.7.0/examples"')
 print "Scan NFC module"

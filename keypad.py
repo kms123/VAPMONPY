@@ -24,51 +24,83 @@ def KeypadRead():
 		GPIO.output(18, 0)
 		if(GPIO.input(4) == 0):
 			keyPressed = '1'
+			while(GPIO.input(4) == 0):
+				pass
 		if(GPIO.input(17) == 0):
 			keyPressed = '4'
+			while(GPIO.input(17) == 0):
+				pass
 		if(GPIO.input(27) == 0):
 			keyPressed = '7'
+			while(GPIO.input(27) == 0):
+				pass
 		if(GPIO.input(22) == 0):
 			keyPressed = '*'
+			while(GPIO.input(22) == 0):
+				pass
 
 		GPIO.output(18, 1)
 		GPIO.output(23, 0)
 
 		if(GPIO.input(4) == 0):
 			keyPressed = '2'
+			while(GPIO.input(4) == 0):
+				pass
 		if(GPIO.input(17) == 0):
 			keyPressed = '5'
+			while(GPIO.input(17) == 0):
+				pass
 		if(GPIO.input(27) == 0):
 			keyPressed = '8'
+			while(GPIO.input(27) == 0):
+				pass
 		if(GPIO.input(22) == 0):
 			keyPressed = '0'
+			while(GPIO.input(22) == 0):
+				pass
 
 		GPIO.output(23, 1)
 		GPIO.output(24, 0)
 
 		if(GPIO.input(4) == 0):
 			keyPressed = '3'
+			while(GPIO.input(4) == 0):
+				pass
 		if(GPIO.input(17) == 0):
 			keyPressed = '6'
+			while(GPIO.input(17) == 0):
+				pass
 		if(GPIO.input(27) == 0):
 			keyPressed = '9'
+			while(GPIO.input(27) == 0):
+				pass
 		if(GPIO.input(22) == 0):
 			keyPressed = "#"
+			while(GPIO.input(22) == 0):
+				pass
 
 		GPIO.output(24, 1)
 		GPIO.output(25, 0)
 
 		if(GPIO.input(4) == 0):
 			keyPressed = 'A'
+			while(GPIO.input(4) == 0):
+				pass
 		if(GPIO.input(17) == 0):
 			keyPressed = 'B'
+			while(GPIO.input(17) == 0):
+				pass
 		if(GPIO.input(27) == 0):
 			keyPressed = 'C'
+			while(GPIO.input(27) == 0):
+				pass
 		if(GPIO.input(22) == 0):
 			keyPressed = 'D'
+			while(GPIO.input(22) == 0):
+				pass
 
 		GPIO.output(25, 1)
 
-	print keyPressed
-
 	GPIO.cleanup()
+
+	return keyPressed
