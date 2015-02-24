@@ -8,18 +8,19 @@ from keypad import KeypadRead as KeypadRead
 #Dummy data
 flow = 5
 press = 1.3
+doctor = 1234
 
-print "Input doctor code"
-digitOne = KeypadRead()
-print digitOne
-digitTwo = KeypadRead()
-print digitTwo
-digitThree = KeypadRead()
-print digitThree
-digitFour = KeypadRead()
-print digitFour
+# print "Input doctor code"
+# digitOne = KeypadRead()
+# print digitOne
+# digitTwo = KeypadRead()
+# print digitTwo
+# digitThree = KeypadRead()
+# print digitThree
+# digitFour = KeypadRead()
+# print digitFour
 
-doctor = digitOne + digitTwo + digitThree + digitFour
+# doctor = digitOne + digitTwo + digitThree + digitFour
 print doctor
 
 os.system('cd "/home/pi/libnfc/libnfc-libnfc-1.7.0/examples"')
