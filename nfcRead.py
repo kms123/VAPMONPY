@@ -38,18 +38,18 @@ UID = ID.replace(" ","")
 print UID
 
 path = os.listdir('/home/pi/RPiCode/')
-if(path.count(UID) == 0):
-	os.mkdir(UID)
+if(path.count(doctor) == 0):
+	os.mkdir(doctor)
 
-os.chdir('/home/pi/RPiCode/' + UID)
+os.chdir('/home/pi/RPiCode/' + doctor)
 
-if not os.path.exists('test.csv'):
-	open('test.csv', 'w').close()
+if not os.path.exists('data.csv'):
+	open('data.csv', 'w').close()
 
-numlines = sum(1 for line in open('test.csv'))
+numlines = sum(1 for line in open('data.csv'))
 print numlines
 
-with open('test.csv', 'a') as f:
+with open('data.csv', 'a') as f:
 	textwriter = csv.writer(f, dialect='excel')
 	if(numlines == 0):
 		textwriter.writerow(['doctorCode']+['patientNumber']+['date']+['flowRateValue']+['pressureValue'])
