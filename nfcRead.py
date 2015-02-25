@@ -5,6 +5,7 @@ import csv
 import Adafruit_CharLCD as LCD
 
 from keypad import KeypadRead as KeypadRead
+from menu import Menu as Menu
 
 #Dummy data
 flow = 5
@@ -13,9 +14,8 @@ press = 1.3
 
 #initialization of the LCD
 lcd = LCD.Adafruit_CharLCDPlate()
-
-#testing for LCD
 lcd.set_color(0,1,0)
+
 lcd.message("Input Doctor #")
 
 print "Input doctor code"
@@ -38,6 +38,8 @@ print digitFour
 
 doctor = digitOne + digitTwo + digitThree + digitFour
 print doctor
+
+selection = Menu()
 
 os.system('cd "/home/pi/libnfc/libnfc-libnfc-1.7.0/examples"')
 
