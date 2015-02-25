@@ -39,8 +39,8 @@ print digitFour
 doctor = digitOne + digitTwo + digitThree + digitFour
 print doctor
 
-selection = Menu()
-
+selection = Menu(lcd)
+print selection
 os.system('cd "/home/pi/libnfc/libnfc-libnfc-1.7.0/examples"')
 
 print "Scan NFC module"
