@@ -15,13 +15,22 @@ def Transmit(lcd, doctor):
 	os.system('hcitool scan > bluezScan.txt')
 	with open("bluezScan.txt") as f:
 		content = f.readlines()
-	print 'Content: ' + str(content)
+#	print 'Content: ' + str(content)
 	
 	for item in content:
 		if "Scanning" in item:
 			content.remove(item)
+
+	namelist = []
+	addresslist = []
+	for item in content:
+		idstring = item.split("\t")
+		addresslist.append(idstring[1])
+		namelist.append(idstring[2])
+
 	
-	print content
+	print "namelist: " + str(namelist)
+	print "addresslist: " + str(addresslist)
 
 	os.chdir('/home/pi/RPiCode/' + doctor)
 
@@ -31,7 +40,8 @@ def Transmit(lcd, doctor):
 		for row in reader:
 			datastring = ','.join(row)
 			datalist.append(datastring)
+
 	for item in datalist:
 		print item
 	
-	print ','.join(datalist)
+#	print '\n'.join(datalist)
