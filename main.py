@@ -39,5 +39,5 @@ while True:
 	if selection == 1:
 		NFCRead(lcd, doctor)
 	else:
-		Transmit(doctor)
+		Transmit(lcd, doctor)
 		

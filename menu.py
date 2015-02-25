@@ -9,7 +9,6 @@ def Menu(lcd):
 	time.sleep(3.0)
 	lcd.clear()
 	lcd.message("\x01 Record\n  Transmit")
-	time.sleep(7.0)
 	
 	selectionMade = False
 	selection = 1
