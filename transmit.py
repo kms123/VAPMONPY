@@ -5,6 +5,8 @@ import Adafruit_CharLCD as LCD
 
 def Transmit(lcd, doctor):
 	print "Transmit Function:"
+	lcd.clear()
+	lcd.message("Transmit\nFunction")
 	
 	path = os.listdir('/home/pi/RPiCode/')
 	if(path.count(doctor) == 0):

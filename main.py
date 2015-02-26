@@ -32,8 +32,9 @@ print digitFour
 doctor = digitOne + digitTwo + digitThree + digitFour
 print doctor
 
+menuItems = ['Record', 'Transmit']
 while True:
-	selection = Menu(lcd)
+	selection = Menu(lcd, menuItems)
 	print selection
 
 	if selection == 1:
