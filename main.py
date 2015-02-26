@@ -1,4 +1,5 @@
 import Adafruit_CharLCD as LCD
+import time
 
 from keypad import KeypadRead as KeypadRead
 from menu import Menu as Menu
@@ -7,8 +8,12 @@ from transmit import Transmit
 
 #initialization of the LCD
 lcd = LCD.Adafruit_CharLCDPlate()
-lcd.set_color(0,1,0)
+lcd.set_color(1,1,1)
+lcd.message("     VAPMON")
+time.sleep(1.5)
 
+lcd.set_color(1,0,1)
+lcd.clear()
 lcd.message("Input Doctor #")
 
 print "Input doctor code"
@@ -34,6 +39,7 @@ print doctor
 
 menuItems = ['Record', 'Transmit']
 while True:
+	lcd.set_color(0,1,0)
 	selection = Menu(lcd, menuItems)
 	print selection
 
