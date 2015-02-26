@@ -5,7 +5,7 @@ import Adafruit_CharLCD as LCD
 from menu import Menu
 
 def Transmit(lcd, doctor):
-	print "Transmit Function:"
+#	print "Transmit Function:"
 	lcd.clear()
 	lcd.message("Transmit\nFunction")
 	os.system('sudo hciconfig hci0 leadv')
@@ -16,12 +16,12 @@ def Transmit(lcd, doctor):
 	if(path.count(doctor) == 0):
 		lcd.clear()
 		lcd.set_color(1,0,0)
-		lcd.message("No data to\n transmit")
+		lcd.message("No data to\ntransmit")
 		time.sleep(5.0)
 		return
 
 	lcd.clear()
-	lcd.message("Scanning for\n Devices")
+	lcd.message("Scanning for\nDevices")
 	os.system('hcitool scan > bluezScan.txt')
 	with open("bluezScan.txt") as f:
 		content = f.readlines()
@@ -39,8 +39,8 @@ def Transmit(lcd, doctor):
 		namelist.append(idstring[2])
 
 	
-	print "namelist: " + str(namelist)
-	print "addresslist: " + str(addresslist)
+#	print "namelist: " + str(namelist)
+#	print "addresslist: " + str(addresslist)
 	selection = Menu(lcd, namelist)
 
 	os.chdir('/home/pi/RPiCode/' + doctor)
@@ -55,4 +55,4 @@ def Transmit(lcd, doctor):
 #	for item in datalist:
 #		print item
 	
-	print '\n'.join(datalist)
+#	print '\n'.join(datalist)

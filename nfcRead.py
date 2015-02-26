@@ -1,5 +1,6 @@
 import os
 import datetime
+import time
 import csv
 import Adafruit_CharLCD as LCD
 
@@ -11,7 +12,8 @@ press = 1.3
 def NFCRead(lcd, doctor):
 	os.system('cd "/home/pi/libnfc/libnfc-libnfc-1.7.0/examples"')
 
-	print "Scan NFC module"
+#	print "Scan NFC module"
+	lcd.set_color(1,1,0)
 	lcd.clear()
 	lcd.message("Scan NFC Module")
 
@@ -26,8 +28,9 @@ def NFCRead(lcd, doctor):
 	UID = ID.replace(" ","")
 	lcd.clear()
 	lcd.message("Scan NFC Module\n" + UID)
-	print UID
-
+	time.sleep(2)
+#	print UID
+	
 	path = os.listdir('/home/pi/RPiCode/')
 	if(path.count(doctor) == 0):
 		os.mkdir(doctor)
@@ -38,7 +41,7 @@ def NFCRead(lcd, doctor):
 		open('data.csv', 'w').close()
 
 	numlines = sum(1 for line in open('data.csv'))
-	print numlines
+#	print numlines
 
 	with open('data.csv', 'a') as f:
 		textwriter = csv.writer(f, dialect='excel')

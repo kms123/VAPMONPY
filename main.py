@@ -16,32 +16,32 @@ lcd.set_color(1,0,1)
 lcd.clear()
 lcd.message("Input Doctor #")
 
-print "Input doctor code"
+#print "Input doctor code"
 digitOne = KeypadRead()
 lcd.clear()
 lcd.message("Input Doctor #\n" + digitOne)
-print digitOne
+#print digitOne
 digitTwo = KeypadRead()
 lcd.clear()
 lcd.message("Input Doctor #\n" + digitOne + digitTwo)
-print digitTwo
+#print digitTwo
 digitThree = KeypadRead()
 lcd.clear()
 lcd.message("Input Doctor #\n" + digitOne + digitTwo + digitThree)
-print digitThree
+#print digitThree
 digitFour = KeypadRead()
 lcd.clear()
 lcd.message("Input Doctor #\n" + digitOne + digitTwo + digitThree + digitFour)
-print digitFour
+#print digitFour
 
 doctor = digitOne + digitTwo + digitThree + digitFour
-print doctor
+#print doctor
 
 menuItems = ['Record', 'Transmit']
 while True:
 	lcd.set_color(0,1,0)
 	selection = Menu(lcd, menuItems)
-	print selection
+#	print selection
 
 	if selection == 1:
 		NFCRead(lcd, doctor)
