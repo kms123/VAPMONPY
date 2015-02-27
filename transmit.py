@@ -3,6 +3,7 @@ import csv
 import time
 import Adafruit_CharLCD as LCD
 from menu import Menu
+from bluetooth import *
 
 def Transmit(lcd, doctor):
 #	print "Transmit Function:"
@@ -38,10 +39,19 @@ def Transmit(lcd, doctor):
 		addresslist.append(idstring[1])
 		namelist.append(idstring[2])
 
+	server_sock=BluetoothSocket(RFCOMM)
+	server_sock.bind(("",PORT_ANY))
+	server_sock.listen(1)	
+	port = server_sock.getsockname()[1]
+	print "Listening on port %d" %port
+
+	uuid = "2345ABCD"
+
+	advertise_service(server_sock, "RPi-0", uuid)
 	
 #	print "namelist: " + str(namelist)
 #	print "addresslist: " + str(addresslist)
-	selection = Menu(lcd, namelist)
+#	selection = Menu(lcd, namelist)
 
 	os.chdir('/home/pi/RPiCode/' + doctor)
 
@@ -52,7 +62,43 @@ def Transmit(lcd, doctor):
 			datastring = ','.join(row)
 			datalist.append(datastring)
 
+
 #	for item in datalist:
 #		print item
 	
-#	print '\n'.join(datalist)
+	dataout =  '\n'.join(datalist)
+
+	transmitting = True
+	idx = 0
+	lastidx = len(dataout) - 1
+	print "Entering transmission loop."
+	while transmitting:
+		client_sock, client_info = server_sock.accept()
+		print "Accepted connection from " + client_info
+
+		try:
+			iosdoctor = client_sock.recv(1024)
+			if iosdoctor != doctor:
+				lcd.set_color(1,0,0)
+				lcd.clear()
+				lcd.message("Doctor codes\ndon't match")
+				time.sleep(1)
+			
+			client_sock.send(dataout[idx:idx+17])
+			if (idx + 17  >= lastidx):
+				transmitting = False
+			
+			idx = idx + 18
+		except IOError:
+			pass
+
+		except KeyboardInterrupt:
+			client_sock.close()
+			server_sock.close()
+			print "*** Transmission Interrupted ***"
+			break
+			
+	lcd.clear()
+	lcd.message("Transmission Complete")
+	client_sock.close()
+	server_sock.close()
