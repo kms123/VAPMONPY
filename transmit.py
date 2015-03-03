@@ -9,6 +9,7 @@ def Transmit(lcd, doctor):
 #	print "Transmit Function:"
 	lcd.clear()
 	lcd.message("Transmit\nFunction")
+	os.system('sudo hciconfig hci0 class 0x1101')
 	os.system('sudo hciconfig hci0 leadv')
 
 	os.chdir('/home/pi/RPiCode/')
@@ -21,23 +22,23 @@ def Transmit(lcd, doctor):
 		time.sleep(5.0)
 		return
 
-	lcd.clear()
-	lcd.message("Scanning for\nDevices")
-	os.system('hcitool scan > bluezScan.txt')
-	with open("bluezScan.txt") as f:
-		content = f.readlines()
+#	lcd.clear()
+#	lcd.message("Scanning for\nDevices")
+#	os.system('hcitool scan > bluezScan.txt')
+#	with open("bluezScan.txt") as f:
+#		content = f.readlines()
 #	print 'Content: ' + str(content)
 	
-	for item in content:
-		if "Scanning" in item:
-			content.remove(item)
+#	for item in content:
+#		if "Scanning" in item:
+#			content.remove(item)
 
-	namelist = []
-	addresslist = []
-	for item in content:
-		idstring = item.split("\t")
-		addresslist.append(idstring[1])
-		namelist.append(idstring[2])
+#	namelist = []
+#	addresslist = []
+#	for item in content:
+#		idstring = item.split("\t")
+#		addresslist.append(idstring[1])
+#		namelist.append(idstring[2])
 
 	server_sock=BluetoothSocket(RFCOMM)
 	server_sock.bind(("",PORT_ANY))
@@ -45,10 +46,11 @@ def Transmit(lcd, doctor):
 	port = server_sock.getsockname()[1]
 	print "Listening on port %d" %port
 
-	uuid = "2345ABCD"
+	seruuid = "50B470F9-BB75-4CEF-9EEE-D254D7B35AF0"
+	charuuid = "091A682D-CCCD-4565-AB5C-737BDD806CF2"
+#	find_service(None, seruuid, None)
+#	advertise_service(server_sock, "RPi-0", seruuid, [SERIAL_PORT_CLASS, AUDIO_SOURCE_CLASS])
 
-	advertise_service(server_sock, "RPi-0", uuid)
-	
 #	print "namelist: " + str(namelist)
 #	print "addresslist: " + str(addresslist)
 #	selection = Menu(lcd, namelist)
@@ -71,6 +73,8 @@ def Transmit(lcd, doctor):
 	transmitting = True
 	idx = 0
 	lastidx = len(dataout) - 1
+	lcd.clear()
+	lcd.message("Transmitting...")
 	print "Entering transmission loop."
 	while transmitting:
 		client_sock, client_info = server_sock.accept()
