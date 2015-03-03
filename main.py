@@ -6,6 +6,7 @@ from keypad import KeypadRead as KeypadRead
 from menu import Menu as Menu
 from nfcRead import NFCRead
 from transmit import Transmit
+from demo import Demo
 
 #initialization of the LCD
 lcd = LCD.Adafruit_CharLCDPlate()
@@ -34,7 +35,7 @@ while True:
 	
 print doctor
 
-menuItems = ['Record', 'Transmit', 'Shutdown']
+menuItems = ['Record', 'Transmit', 'Shutdown', 'Demo']
 while True:
 #	lcd.set_color(0,1,0)
 	selection = Menu(lcd, menuItems)
@@ -44,8 +45,10 @@ while True:
 		NFCRead(lcd, doctor)
 	elif selection == 2:
 		Transmit(lcd, doctor)
-	else:
+	elif selection == 3:
 		lcd.set_color(0,0,0)
 		lcd.clear()
 		os.system('sudo shutdown -h now')
+	else:
+		Demo(lcd)
 		

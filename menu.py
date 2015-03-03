@@ -22,7 +22,7 @@ def Menu(lcd, items):
 	selection = 0
 	
 	buttons = (	(LCD.SELECT, True),
-			(LCD.LEFT, False),
+			(LCD.LEFT, True),
 			(LCD.UP, False),
 			(LCD.DOWN, False),
 			(LCD.RIGHT, False))
@@ -31,6 +31,8 @@ def Menu(lcd, items):
 		for button in buttons:
 			if lcd.is_pressed(button[0]):
 				selectionMade = button[1]
+				if button[0] == LCD.LEFT:
+					selection = -2
 				if button[0] == LCD.DOWN:
 					if (selection < len(items)-1):
 						selection = selection + 1
