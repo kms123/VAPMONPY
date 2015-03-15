@@ -2,6 +2,7 @@ import time
 import os
 import RPi.GPIO as GPIO
 import Adafruit_CharLCD as LCD
+from presureaverage import PressureAverage
 
 def readADC(adcnum, clockpin, mosipin, misopin, cspin):
 	GPIO.output(cspin, True)
@@ -50,7 +51,7 @@ def sensor(lcd):
 	GPIO.setup(SPICLK, GPIO.OUT)
 	GPIO.setup(SPICS, GPIO.OUT)
 	
-	print "Sensor()"
+	#print "Sensor()"
 	sensorADC = 0
 	lastRead = 0
 	
@@ -78,7 +79,7 @@ def sensor(lcd):
 				sensing = button[1]
 				
 	
-	average = sum(data) / float(len(data))
+	average = PressureAverage(data)
 	
 	GPIO.cleanup()
 	
