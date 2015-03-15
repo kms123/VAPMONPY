@@ -3,5 +3,5 @@ NFC reader: pn532_uart:/dev/ttyAMA0 opened
 NFC device will poll during 30000 ms (20 pollings of 300 ms for 5 modulations)
 ISO/IEC 14443A (106 kbps) target:
     ATQA (SENS_RES): 00  04  
-       UID (NFCID1): e7  23  23  76  
+       UID (NFCID1): a7  88  98  79  
       SAK (SEL_RES): 08  

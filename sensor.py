@@ -36,7 +36,7 @@ def readADC(adcnum, clockpin, mosipin, misopin, cspin):
 	adcout >>= 1
 	return adcout
 	
-def sensor():
+def sensor(lcd):
 	GPIO.setmode(GPIO.BCM)
 	
 	SPICLK = 11
@@ -50,6 +50,7 @@ def sensor():
 	GPIO.setup(SPICLK, GPIO.OUT)
 	GPIO.setup(SPICS, GPIO.OUT)
 	
+	print "Sensor()"
 	sensorADC = 0
 	lastRead = 0
 	
@@ -65,8 +66,11 @@ def sensor():
 	
 	while sensing:
 		
-		sensor = readadc(potentiometer_adc, SPICLK, SPIMOSI, SPIMISO, SPICS)
-		
+		sensor = readADC(sensorADC, SPICLK, SPIMOSI, SPIMISO, SPICS)
+
+		lcd.clear()
+		lcd.message(str(sensor))
+
 		data.append(sensor)
 		
 		for button in buttons:

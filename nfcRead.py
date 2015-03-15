@@ -4,13 +4,14 @@ import time
 import csv
 import Adafruit_CharLCD as LCD
 import random
+from sensor import sensor
 
 def NFCRead(lcd, doctor):
 
 #Dummy data
 	flow = random.randrange(0,10)
 	print 'Flow: ' +str(flow)
-	press = random.randrange(1,5)
+	press = 0
 #	doctor = "1234"
 
 	os.system('cd "/home/pi/libnfc/libnfc-libnfc-1.7.0/examples"')
@@ -34,6 +35,9 @@ def NFCRead(lcd, doctor):
 	time.sleep(2)
 #	print UID
 	
+	lcd.clear()
+	lcd.message("Enter flow rate:")
+	
 	path = os.listdir('/home/pi/RPiCode/')
 	if(path.count(doctor) == 0):
 		os.mkdir(doctor)
@@ -45,7 +49,9 @@ def NFCRead(lcd, doctor):
 
 	numlines = sum(1 for line in open('data.csv'))
 #	print numlines
-
+	
+	press = sensor(lcd)
+	
 	with open('data.csv', 'a') as f:
 		textwriter = csv.writer(f, dialect='excel')
 		if(numlines == 0):
