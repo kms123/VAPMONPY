@@ -9,8 +9,8 @@ from sensor import sensor
 def NFCRead(lcd, doctor):
 
 #Dummy data
-	flow = random.randrange(0,10)
-	print 'Flow: ' +str(flow)
+	flow = 0 #random.randrange(0,10)
+	#print 'Flow: ' + str(flow)
 	press = 0
 #	doctor = "1234"
 
@@ -37,6 +37,27 @@ def NFCRead(lcd, doctor):
 	
 	lcd.clear()
 	lcd.message("Enter flow rate:")
+	
+	while True:
+		#print "Input doctor code"
+		digit = KeypadRead()
+		if digit == 'B':
+			flow = flow[:-1]
+		elif digit == '*':
+			break
+		else:
+			flow += digit
+		lcd.clear()
+		lcd.message("Enter flow rate:\n" + flow)
+		
+	flowunits = ["ml/s", "ml/min"]
+	units = Menu(lcd, flowunits)
+	if units == 1:
+		flow += flowunits[0]
+	else
+		flow += flowunits[1]
+		
+	print "Flow: " + str(flow)
 	
 	path = os.listdir('/home/pi/RPiCode/')
 	if(path.count(doctor) == 0):
