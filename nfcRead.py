@@ -5,11 +5,13 @@ import csv
 import Adafruit_CharLCD as LCD
 import random
 from sensor import sensor
+from keypad import KeypadRead
+from menu import Menu
 
 def NFCRead(lcd, doctor):
 
 #Dummy data
-	flow = 0 #random.randrange(0,10)
+	flow = "" #random.randrange(0,10)
 	#print 'Flow: ' + str(flow)
 	press = 0
 #	doctor = "1234"
@@ -54,7 +56,7 @@ def NFCRead(lcd, doctor):
 	units = Menu(lcd, flowunits)
 	if units == 1:
 		flow += flowunits[0]
-	else
+	else:
 		flow += flowunits[1]
 		
 	print "Flow: " + str(flow)
