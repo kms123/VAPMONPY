@@ -2,7 +2,7 @@ import time
 import os
 import RPi.GPIO as GPIO
 import Adafruit_CharLCD as LCD
-from presureaverage import PressureAverage
+from pressureaverage import PressureAverage
 
 def readADC(adcnum, clockpin, mosipin, misopin, cspin):
 	GPIO.output(cspin, True)

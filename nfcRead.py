@@ -54,10 +54,10 @@ def NFCRead(lcd, doctor):
 		
 	flowunits = ["ml/s", "ml/min"]
 	units = Menu(lcd, flowunits)
-	if units == 1:
-		flow += flowunits[0]
-	else:
-		flow += flowunits[1]
+	lcd.set_color(1,1,0)
+
+	if units == 2:
+		flow = float(flow)/60 
 		
 	print "Flow: " + str(flow)
 	

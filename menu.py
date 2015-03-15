@@ -33,7 +33,7 @@ def Menu(lcd, items):
 				selectionMade = button[1]
 				if button[0] == LCD.LEFT:
 					selection = -2
-				if button[0] == LCD.DOWN:
+				if button[0] == LCD.RIGHT:
 					if (selection < len(items)-1):
 						selection = selection + 1
 					print "Selection: " + str(selection)
