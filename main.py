@@ -20,8 +20,9 @@ lcd.message("Input Doctor #")
 
 digit = ""
 doctor = ""
+print "Input doctor code"
+
 while True:
-	#print "Input doctor code"
 	digit = KeypadRead()
 	if digit == 'B':
 		doctor = doctor[:-1]
@@ -31,15 +32,16 @@ while True:
 		doctor += digit
 	lcd.clear()
 	lcd.message("Input Doctor #\n" + doctor)
-	#print digitOne
+	print digit
 	
 print doctor
 
 menuItems = ['Record', 'Transmit', 'Shutdown', 'Demo']
 while True:
 #	lcd.set_color(0,1,0)
+	print "Main Menu"
 	selection = Menu(lcd, menuItems)
-#	print selection
+	print selection
 
 	if selection == 1:
 		NFCRead(lcd, doctor)

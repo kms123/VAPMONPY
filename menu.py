@@ -14,7 +14,7 @@ def Menu(lcd, items):
 	if len(items[1]) < 13:
 		len1 = len(items[1])		
 
-	lcd.set_color(0,1,0)
+	lcd.set_color(1,1,1)
 	lcd.clear()
 	lcd.message("\x01 " + items[0][:len0] + "\n  " + items[1][:len1])
 	

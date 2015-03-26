@@ -22,6 +22,7 @@ def NFCRead(lcd, doctor):
 	lcd.set_color(1,1,0)
 	lcd.clear()
 	lcd.message("Scan NFC Module")
+	print "Scan NFC Module"
 
 	os.system('nfc-poll > /home/pi/RPiCode/nfc.txt') #Currently overwriting file every time. This file just used to save UID and then it is extracted and saved in the proper data file.
 	with open("/home/pi/RPiCode/nfc.txt") as f:
@@ -34,12 +35,12 @@ def NFCRead(lcd, doctor):
 	UID = ID.replace(" ","")
 	lcd.clear()
 	lcd.message("Scan NFC Module\n" + UID)
+	print UID
 	time.sleep(2)
-#	print UID
 	
 	lcd.clear()
 	lcd.message("Enter flow rate:")
-	
+	print "Enter flow rate: "
 	while True:
 		#print "Input doctor code"
 		digit = KeypadRead()
@@ -51,13 +52,15 @@ def NFCRead(lcd, doctor):
 			flow += digit
 		lcd.clear()
 		lcd.message("Enter flow rate:\n" + flow)
-		
+		print flow
+
 	flowunits = ["ml/s", "ml/min"]
+	print "Pick units"
 	units = Menu(lcd, flowunits)
 	lcd.set_color(1,1,0)
 
 	if units == 2:
-		flow = float(flow)/60 
+		flow = int(float(flow)/60) 
 		
 	print "Flow: " + str(flow)
 	
