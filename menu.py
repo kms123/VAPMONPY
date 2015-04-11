@@ -25,7 +25,7 @@ def Menu(lcd, items):
 			(LCD.LEFT, True),
 			(LCD.UP, False),
 			(LCD.DOWN, False),
-			(LCD.RIGHT, False))
+			(LCD.RIGHT, True))
 			
 	while not selectionMade:
 		for button in buttons:
@@ -33,7 +33,7 @@ def Menu(lcd, items):
 				selectionMade = button[1]
 				if button[0] == LCD.LEFT:
 					selection = -2
-				if button[0] == LCD.RIGHT:
+				if button[0] == LCD.DOWN:
 					if (selection < len(items)-1):
 						selection = selection + 1
 					print "Selection: " + str(selection)

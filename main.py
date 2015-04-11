@@ -10,7 +10,7 @@ from demo import Demo
 
 #initialization of the LCD
 lcd = LCD.Adafruit_CharLCDPlate()
-lcd.set_color(1,1,1)
+lcd.set_color(1,0,0)
 lcd.message("     VAPMON")
 time.sleep(1.5)
 
@@ -36,7 +36,7 @@ while True:
 	
 print doctor
 
-menuItems = ['Record', 'Transmit', 'Shutdown', 'Demo']
+menuItems = ['Record', 'Transmit', 'Shutdown']
 while True:
 #	lcd.set_color(0,1,0)
 	print "Main Menu"
@@ -52,5 +52,5 @@ while True:
 		lcd.clear()
 		os.system('sudo shutdown -h now')
 	else:
-		Demo(lcd)
+		pass
 		
