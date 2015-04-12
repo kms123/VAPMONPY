@@ -6,7 +6,6 @@ from keypad import KeypadRead as KeypadRead
 from menu import Menu as Menu
 from nfcRead import NFCRead
 from transmit import Transmit
-from demo import Demo
 
 #initialization of the LCD
 lcd = LCD.Adafruit_CharLCDPlate()
@@ -20,8 +19,9 @@ lcd.message("Input Doctor #")
 
 digit = ""
 doctor = ""
-print "Input doctor code"
+#print "Input doctor code"
 
+#Read the doctor code in from the keypad and display each digit as it is entered.
 while True:
 	digit = KeypadRead()
 	if digit == 'B':
@@ -32,10 +32,11 @@ while True:
 		doctor += digit
 	lcd.clear()
 	lcd.message("Input Doctor #\n" + doctor)
-	print digit
+	#print digit
 	
-print doctor
+#print doctor
 
+#Main menu where user selects what action they want to take.
 menuItems = ['Record', 'Transmit', 'Shutdown']
 while True:
 #	lcd.set_color(0,1,0)
