@@ -1,5 +1,5 @@
 # VAPMONPY
-Python code for the project.
+Python code and supporting files for the project.
 
 _____________________________________________________________________
 startup.sh : This is a bash script that executes the python project at the startup of the RaspberryPi.
